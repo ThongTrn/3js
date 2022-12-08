@@ -25,32 +25,32 @@
 		let E40 = 0.0;
 		let F41 = 0.0;
 		// Enable WebMidi.js and trigger the onEnabled() function when ready.
-		// WebMidi
-		//   .enable()
-		//   .then(onEnabled)
-		//   .catch(err => alert(err));
+		WebMidi
+		  .enable()
+		  .then(onEnabled)
+		  .catch(err => alert(err));
   
-		// function onEnabled() {
-		//   if (WebMidi.inputs.length < 1) {
-		// 	console.log("No device detected.");
-		//   } else {
-		// 	WebMidi.inputs.forEach((device, index) => {
-		// 		console.log(`${index}: ${device.name}`);
-		// 	});
-		//   }
-		//   const mySynth = WebMidi.inputs[1];
-		//   mySynth.channels[5].addListener("noteon", e => {
-		// 	console.log(`${e.note.name}`+`${e.note.octave}`);
-		// 	if(e.note.name == 'E'){
-		// 		console.log('E');
-		// 		E40 = e.note.rawAttack/127;
-		// 	}
-		// 	else if(e.note.name == 'F'){
-		// 		F41 = e.note.rawAttack;
-		// 		console.log(e.note.rawAttack/127);
-		// 	}
-		//   });
-		// }
+		function onEnabled() {
+		  if (WebMidi.inputs.length < 1) {
+			console.log("No device detected.");
+		  } else {
+			WebMidi.inputs.forEach((device, index) => {
+				console.log(`${index}: ${device.name}`);
+			});
+		  }
+		  const mySynth = WebMidi.inputs[1];
+		  mySynth.channels[5].addListener("noteon", e => {
+			console.log(`${e.note.name}`+`${e.note.octave}`);
+			if(e.note.name == 'E'){
+				console.log('E');
+				E40 = e.note.rawAttack/127;
+			}
+			else if(e.note.name == 'F'){
+				F41 = e.note.rawAttack;
+				console.log(e.note.rawAttack/127);
+			}
+		  });
+		}
   
 	  	
 
